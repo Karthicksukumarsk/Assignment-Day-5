@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class User {
+    constructor(name, age,email) {
+      this.name = name;
+      this.age = age;
+      this.email = email;
+      this.luCoins = 0;
+      this.courses = [];
+    }
+
+    login(){
+        console.log(`${this.name} has logged in`);
+        return this;
+    }
+    logout(){
+        console.log(`${this.name} has logged out`);
+        return this;
+    }
+
+}
+
+class Moderator extends User{
+    constructor(name,age,email){
+        super(name,age,email);
+        this.luCoins=0;
+    }
+    addCoins(){
+        this.luCoins++;
+        console.log(`${this.name} has ${this.luCoins} coins`);
+        return this;
+    }
+    removeCoins(){
+        this.luCoins--;
+        console.log(`${this.name} has ${this.luCoins} coins`);
+        return this;
+    }
+
+
+}
+
+class Admin extends Moderator{
+   addCourse(user,course){
+       user.courses.push(course);
+       console.log(user);
+   }
+   deleteCourse(user,course){
+       user.courses.pop(course);
+       console.log(user);
+   }
+}
+
+
+let user1 = new User('karthick',25,'karthick@gmail.com')
+let user2 = new User('dinesh',24,'dinesh@gmai.com')
+let modu=new Moderator('maha',56,'maha@gmail.com')
+let admin=new Admin('gayu',22,'gayu@gmail.com')
+modu.addCoins();
+modu.addCoins();
+modu.removeCoins();
+admin.addCourse(user1,"java")
+admin.addCourse(user1,"python")
+admin.deleteCourse(user1,"java")
+admin.addCourse(user1,"python")
+
+    </script>
+</body>
+</html>
